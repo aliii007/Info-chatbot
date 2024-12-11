@@ -76,7 +76,7 @@ const App = () => {
           overflowY: "auto",
           padding: "20px",
           backgroundColor: "rgba(255, 255, 255, 0.2)",
-          scrollbarWidth: "thin", // For Firefox
+          scrollbarWidth: "thin",
           "&::-webkit-scrollbar": {
             width: "6px",
           },
@@ -102,8 +102,8 @@ const App = () => {
                   backgroundColor: "#6a11cb",
                   color: "#fff",
                   marginRight: "10px",
-                  width: { xs: "30px", sm: "40px" },
-                  height: { xs: "30px", sm: "40px" },
+                  width: { xs: "40px", sm: "50px" },
+                  height: { xs: "40px", sm: "50px" },
                 }}
               >
                 B
@@ -113,13 +113,13 @@ const App = () => {
               sx={{
                 maxWidth: "70%",
                 padding: "10px",
-                borderRadius: "10px",
-                backgroundColor:
-                  message.sender === "user" ? "rgba(255, 255, 255, 0.8)" : "#fff",
-                color: message.sender === "user" ? "#000" : "#333",
-                fontSize: { xs: "12px", sm: "14px", md: "16px" },
+                borderRadius: "20px",
+                background: message.sender === "user"
+                  ? "linear-gradient(to right, #ff7eb3, #ff758c)"
+                  : "linear-gradient(to right, #85f7ff, #6a11cb)",
+                color: "#fff",
+                fontSize: { xs: "14px", sm: "16px" },
                 position: "relative",
-                zIndex: 2,
               }}
             >
               <Typography>{message.text}</Typography>
@@ -130,8 +130,8 @@ const App = () => {
                   backgroundColor: "#ff4081",
                   color: "#fff",
                   marginLeft: "10px",
-                  width: { xs: "30px", sm: "40px" },
-                  height: { xs: "30px", sm: "40px" },
+                  width: { xs: "40px", sm: "50px" },
+                  height: { xs: "40px", sm: "50px" },
                 }}
               >
                 U
@@ -152,26 +152,25 @@ const App = () => {
         }}
       >
         <InputBase
-  placeholder="Type your message..."
-  value={userInput}
-  onChange={(e) => setUserInput(e.target.value)}
-  onKeyDown={(e) => {
-    if (e.key === "Enter") {
-      e.preventDefault(); // Prevents the default action (e.g., form submission)
-      handleSend(); // Call the handleSend function
-    }
-  }}
-  sx={{
-    flex: 1,
-    padding: "10px",
-    borderRadius: "20px",
-    border: "1px solid #ddd",
-    backgroundColor: "#f9f9f9",
-    marginRight: "10px",
-    fontSize: { xs: "12px", sm: "14px" },
-  }}
-/>
-
+          placeholder="Type your message..."
+          value={userInput}
+          onChange={(e) => setUserInput(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              handleSend();
+            }
+          }}
+          sx={{
+            flex: 1,
+            padding: "10px",
+            borderRadius: "20px",
+            border: "1px solid #ddd",
+            backgroundColor: "#f9f9f9",
+            marginRight: "10px",
+            fontSize: { xs: "12px", sm: "14px" },
+          }}
+        />
         <IconButton
           onClick={handleSend}
           sx={{
