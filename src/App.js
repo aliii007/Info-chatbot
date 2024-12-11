@@ -1,27 +1,26 @@
 import React, { useState } from "react";
 import {
   Box,
-  TextField,
-  IconButton,
   Typography,
   Paper,
   List,
   ListItem,
   Avatar,
   InputBase,
+  IconButton,
 } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 
 const App = () => {
   const [messages, setMessages] = useState([
-    { sender: "bot", text: "Hi! How can I assist you today?" },
+    { sender: "bot", text: "Hi! How can I assist you today?", avatar: "/bot-avatar.png" },
   ]);
   const [userInput, setUserInput] = useState("");
 
   const handleSend = () => {
     if (userInput.trim() === "") return;
 
-    const newMessages = [...messages, { sender: "user", text: userInput }];
+    const newMessages = [...messages, { sender: "user", text: userInput, avatar: "/user-avatar.png" }];
     setMessages(newMessages);
     setUserInput("");
 
@@ -29,7 +28,7 @@ const App = () => {
     setTimeout(() => {
       setMessages((prev) => [
         ...prev,
-        { sender: "bot", text: `You said: "${userInput}"` },
+        { sender: "bot", text: `You said: "${userInput}"`, avatar: "/bot-avatar.png" },
       ]);
     }, 1000);
   };
@@ -39,30 +38,28 @@ const App = () => {
       sx={{
         display: "flex",
         flexDirection: "column",
-        justifyContent: "space-between",
         height: "100vh",
-        background: "linear-gradient(to bottom, #6a11cb, #2575fc)",
-        overflow: "hidden",
+        background: "linear-gradient(to bottom, #8e44ad, #3498db)",
       }}
     >
       {/* Chat Header */}
       <Paper
-        elevation={2}
+        elevation={3}
         sx={{
-          padding: "10px",
-          background: "linear-gradient(to right, #6a11cb, #2575fc)",
+          padding: "15px",
+          background: "linear-gradient(to right, #8e44ad, #3498db)",
           color: "#fff",
           textAlign: "center",
         }}
       >
         <Typography
           variant="h5"
-          fontWeight="bold"
           sx={{
-            fontFamily: "'Poppins', sans-serif",
-            letterSpacing: "2px",
+            fontFamily: "'Roboto', sans-serif",
+            fontWeight: "bold",
+            fontSize: { xs: "20px", sm: "26px" },
             textTransform: "uppercase",
-            fontSize: { xs: "18px", sm: "24px", md: "28px" },
+            letterSpacing: "1.5px",
           }}
         >
           AI Property Chatbot
@@ -75,13 +72,9 @@ const App = () => {
           flex: 1,
           overflowY: "auto",
           padding: "20px",
-          backgroundColor: "rgba(255, 255, 255, 0.2)",
-          scrollbarWidth: "thin",
-          "&::-webkit-scrollbar": {
-            width: "6px",
-          },
+          "&::-webkit-scrollbar": { width: "6px" },
           "&::-webkit-scrollbar-thumb": {
-            background: "rgba(0,0,0,0.3)",
+            background: "rgba(0, 0, 0, 0.3)",
             borderRadius: "10px",
           },
         }}
@@ -91,52 +84,43 @@ const App = () => {
             key={index}
             sx={{
               display: "flex",
-              alignItems: "flex-start",
-              justifyContent:
-                message.sender === "user" ? "flex-end" : "flex-start",
+              justifyContent: message.sender === "user" ? "flex-end" : "flex-start",
+              marginBottom: "10px",
             }}
           >
-            {message.sender === "bot" && (
-              <Avatar
-                sx={{
-                  backgroundColor: "#6a11cb",
-                  color: "#fff",
-                  marginRight: "10px",
-                  width: { xs: "40px", sm: "50px" },
-                  height: { xs: "40px", sm: "50px" },
-                }}
-              >
-                B
-              </Avatar>
-            )}
             <Box
               sx={{
-                maxWidth: "70%",
-                padding: "10px",
-                borderRadius: "20px",
-                background: message.sender === "user"
-                  ? "linear-gradient(to right, #ff7eb3, #ff758c)"
-                  : "linear-gradient(to right, #85f7ff, #6a11cb)",
-                color: "#fff",
-                fontSize: { xs: "14px", sm: "16px" },
-                position: "relative",
+                display: "flex",
+                alignItems: "center",
+                maxWidth: "75%",
+                flexDirection: message.sender === "user" ? "row-reverse" : "row",
               }}
             >
-              <Typography>{message.text}</Typography>
-            </Box>
-            {message.sender === "user" && (
               <Avatar
+                src={message.avatar}
                 sx={{
-                  backgroundColor: "#ff4081",
-                  color: "#fff",
-                  marginLeft: "10px",
                   width: { xs: "40px", sm: "50px" },
                   height: { xs: "40px", sm: "50px" },
+                  margin: message.sender === "user" ? "0 0 0 10px" : "0 10px 0 0",
+                }}
+              />
+              <Box
+                sx={{
+                  padding: "10px",
+                  borderRadius: "15px",
+                  background: message.sender === "user"
+                    ? "linear-gradient(to right, #ff758c, #ff7eb3)"
+                    : "linear-gradient(to right, #3498db, #8e44ad)",
+                  color: "#fff",
+                  wordWrap: "break-word",
+                  boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
                 }}
               >
-                U
-              </Avatar>
-            )}
+                <Typography variant="body1" sx={{ fontSize: { xs: "14px", sm: "16px" } }}>
+                  {message.text}
+                </Typography>
+              </Box>
+            </Box>
           </ListItem>
         ))}
       </List>
@@ -145,10 +129,10 @@ const App = () => {
       <Box
         sx={{
           display: "flex",
-          padding: { xs: "8px", sm: "10px" },
           alignItems: "center",
-          backgroundColor: "#fff",
-          boxShadow: "0 -2px 5px rgba(0,0,0,0.1)",
+          padding: "10px",
+          background: "#fff",
+          boxShadow: "0 -2px 5px rgba(0, 0, 0, 0.1)",
         }}
       >
         <InputBase
@@ -174,12 +158,12 @@ const App = () => {
         <IconButton
           onClick={handleSend}
           sx={{
-            background: "linear-gradient(to right, #6a11cb, #2575fc)",
+            background: "linear-gradient(to right, #8e44ad, #3498db)",
             color: "#fff",
             borderRadius: "50%",
             padding: { xs: "8px", sm: "10px" },
             "&:hover": {
-              background: "linear-gradient(to right, #2575fc, #6a11cb)",
+              background: "linear-gradient(to right, #3498db, #8e44ad)",
             },
           }}
         >
