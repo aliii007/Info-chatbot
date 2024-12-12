@@ -41,7 +41,7 @@ const App = () => {
         display: "flex",
         flexDirection: "column",
         height: "100vh",
-        background: "linear-gradient(to bottom, #e3f2fd, #bbdefb)", // Subtle gradient background
+        background: "linear-gradient(to bottom, #8e44ad, #ff4081)", // Purple to pink gradient background
       }}
     >
       {/* Chat Header */}
@@ -49,7 +49,7 @@ const App = () => {
         elevation={3}
         sx={{
           padding: "15px",
-          background: "linear-gradient(to right, #8e44ad, #3498db)", // Bold header gradient
+          background: "linear-gradient(to right, #8e44ad, #3498db)", // Bold gradient header
           color: "#fff",
           textAlign: "center",
         }}
@@ -76,7 +76,7 @@ const App = () => {
           padding: "20px",
           "&::-webkit-scrollbar": { width: "6px" },
           "&::-webkit-scrollbar-thumb": {
-            background: "rgba(0, 0, 0, 0.3)",
+            background: "rgba(255, 255, 255, 0.5)", // White-ish scrollbar
             borderRadius: "10px",
           },
         }}
