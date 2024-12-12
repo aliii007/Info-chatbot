@@ -19,7 +19,10 @@ const App = () => {
   const handleSend = () => {
     if (userInput.trim() === "") return;
 
-    const newMessages = [...messages, { sender: "user", text: userInput, avatar: "/user-avatar.png" }];
+    const newMessages = [
+      ...messages,
+      { sender: "user", text: userInput, avatar: "/user-avatar.png" },
+    ];
     setMessages(newMessages);
     setUserInput("");
 
@@ -92,33 +95,15 @@ const App = () => {
                 display: "flex",
                 alignItems: "center",
                 maxWidth: "70%",
-                background: message.sender === "user"
-                  ? "linear-gradient(to right, #ff758c, #ff7eb3)"
-                  : "linear-gradient(to right, #3498db, #8e44ad)",
+                background: message.sender === "user" ? "#ff7eb3" : "#8e44ad",
                 color: "#fff",
                 borderRadius: "15px",
                 padding: "10px 15px",
                 position: "relative",
                 boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
-                "&::after": {
-                  content: '""',
-                  position: "absolute",
-                  top: "50%",
-                  transform: "translateY(-50%)",
-                  width: "0",
-                  height: "0",
-                  borderStyle: "solid",
-                  borderWidth: message.sender === "user"
-                    ? "10px 0 10px 10px"
-                    : "10px 10px 10px 0",
-                  borderColor: message.sender === "user"
-                    ? "transparent transparent transparent #ff7eb3"
-                    : "transparent #3498db transparent transparent",
-                  left: message.sender === "user" ? "auto" : "-10px",
-                  right: message.sender === "user" ? "-10px" : "auto",
-                },
               }}
             >
+              {/* Avatar Inside Message Box */}
               <Box
                 sx={{
                   display: "flex",
@@ -129,8 +114,8 @@ const App = () => {
                   backgroundColor: "#fff",
                   borderRadius: "50%",
                   overflow: "hidden",
-                  marginRight: message.sender === "user" ? "0" : "10px",
-                  marginLeft: message.sender === "user" ? "10px" : "0",
+                  marginRight: "10px",
+                  flexShrink: 0,
                 }}
               >
                 <img
