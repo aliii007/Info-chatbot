@@ -41,7 +41,7 @@ const App = () => {
         display: "flex",
         flexDirection: "column",
         height: "100vh",
-        background: "linear-gradient(to bottom, #8e44ad, #ff4081)", // Purple to pink gradient background
+        background: "linear-gradient(to bottom, #8e44ad, #ff4081)", // Background gradient
       }}
     >
       {/* Chat Header */}
@@ -76,7 +76,7 @@ const App = () => {
           padding: "20px",
           "&::-webkit-scrollbar": { width: "6px" },
           "&::-webkit-scrollbar-thumb": {
-            background: "rgba(255, 255, 255, 0.5)", // White-ish scrollbar
+            background: "rgba(255, 255, 255, 0.5)", // Semi-transparent scrollbar
             borderRadius: "10px",
           },
         }}
@@ -103,9 +103,25 @@ const App = () => {
                 padding: "10px 15px",
                 position: "relative",
                 boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
+                "::before": {
+                  content: '""',
+                  position: "absolute",
+                  width: "0",
+                  height: "0",
+                  borderStyle: "solid",
+                  borderWidth: message.sender === "user"
+                    ? "10px 0 10px 15px" // Tail for user
+                    : "10px 15px 10px 0", // Tail for bot
+                  borderColor: message.sender === "user"
+                    ? "transparent transparent transparent #ff4081"
+                    : "transparent #8e44ad transparent transparent",
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  right: message.sender === "user" ? "-15px" : "auto",
+                  left: message.sender === "bot" ? "-15px" : "auto",
+                },
               }}
             >
-              {/* Avatar Inside Message Box */}
               <Box
                 sx={{
                   display: "flex",
@@ -150,7 +166,7 @@ const App = () => {
           display: "flex",
           alignItems: "center",
           padding: "10px",
-          background: "#fff",
+          background: "linear-gradient(to right, #8e44ad, #ff4081)", // Gradient footer
           boxShadow: "0 -2px 5px rgba(0, 0, 0, 0.1)",
         }}
       >
@@ -169,7 +185,7 @@ const App = () => {
             padding: "10px",
             borderRadius: "20px",
             border: "1px solid #ddd",
-            backgroundColor: "#f9f9f9",
+            backgroundColor: "#fff",
             marginRight: "10px",
             fontSize: { xs: "12px", sm: "14px" },
           }}
