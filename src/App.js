@@ -5,7 +5,6 @@ import {
   Paper,
   List,
   ListItem,
-  Avatar,
   InputBase,
   IconButton,
 } from "@mui/material";
@@ -39,7 +38,7 @@ const App = () => {
         display: "flex",
         flexDirection: "column",
         height: "100vh",
-        background: "linear-gradient(to bottom, #8e44ad, #3498db)",
+        background: "linear-gradient(to bottom, #f5f5f5, #e3f2fd)",
       }}
     >
       {/* Chat Header */}
@@ -85,41 +84,74 @@ const App = () => {
             sx={{
               display: "flex",
               justifyContent: message.sender === "user" ? "flex-end" : "flex-start",
-              marginBottom: "10px",
+              marginBottom: "15px",
             }}
           >
             <Box
               sx={{
                 display: "flex",
                 alignItems: "center",
-                maxWidth: "75%",
-                flexDirection: message.sender === "user" ? "row-reverse" : "row",
+                maxWidth: "70%",
+                background: message.sender === "user"
+                  ? "linear-gradient(to right, #ff758c, #ff7eb3)"
+                  : "linear-gradient(to right, #3498db, #8e44ad)",
+                color: "#fff",
+                borderRadius: "15px",
+                padding: "10px 15px",
+                position: "relative",
+                boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
+                "&::after": {
+                  content: '""',
+                  position: "absolute",
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  width: "0",
+                  height: "0",
+                  borderStyle: "solid",
+                  borderWidth: message.sender === "user"
+                    ? "10px 0 10px 10px"
+                    : "10px 10px 10px 0",
+                  borderColor: message.sender === "user"
+                    ? "transparent transparent transparent #ff7eb3"
+                    : "transparent #3498db transparent transparent",
+                  left: message.sender === "user" ? "auto" : "-10px",
+                  right: message.sender === "user" ? "-10px" : "auto",
+                },
               }}
             >
-              <Avatar
-                src={message.avatar}
-                sx={{
-                  width: { xs: "40px", sm: "50px" },
-                  height: { xs: "40px", sm: "50px" },
-                  margin: message.sender === "user" ? "0 0 0 10px" : "0 10px 0 0",
-                }}
-              />
               <Box
                 sx={{
-                  padding: "10px",
-                  borderRadius: "15px",
-                  background: message.sender === "user"
-                    ? "linear-gradient(to right, #ff758c, #ff7eb3)"
-                    : "linear-gradient(to right, #3498db, #8e44ad)",
-                  color: "#fff",
-                  wordWrap: "break-word",
-                  boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  width: "35px",
+                  height: "35px",
+                  backgroundColor: "#fff",
+                  borderRadius: "50%",
+                  overflow: "hidden",
+                  marginRight: message.sender === "user" ? "0" : "10px",
+                  marginLeft: message.sender === "user" ? "10px" : "0",
                 }}
               >
-                <Typography variant="body1" sx={{ fontSize: { xs: "14px", sm: "16px" } }}>
-                  {message.text}
-                </Typography>
+                <img
+                  src={message.avatar}
+                  alt="avatar"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                  }}
+                />
               </Box>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: "14px", sm: "16px" },
+                  wordWrap: "break-word",
+                }}
+              >
+                {message.text}
+              </Typography>
             </Box>
           </ListItem>
         ))}
