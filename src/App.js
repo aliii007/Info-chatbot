@@ -41,7 +41,7 @@ const App = () => {
         display: "flex",
         flexDirection: "column",
         height: "100vh",
-        background: "linear-gradient(to bottom, #f5f5f5, #e3f2fd)",
+        background: "linear-gradient(to bottom, #e3f2fd, #bbdefb)", // Subtle gradient background
       }}
     >
       {/* Chat Header */}
@@ -49,7 +49,7 @@ const App = () => {
         elevation={3}
         sx={{
           padding: "15px",
-          background: "linear-gradient(to right, #8e44ad, #3498db)",
+          background: "linear-gradient(to right, #8e44ad, #3498db)", // Bold header gradient
           color: "#fff",
           textAlign: "center",
         }}
@@ -95,7 +95,9 @@ const App = () => {
                 display: "flex",
                 alignItems: "center",
                 maxWidth: "70%",
-                background: message.sender === "user" ? "#ff7eb3" : "#8e44ad",
+                background: message.sender === "user"
+                  ? "linear-gradient(to right, #ff7eb3, #ff4081)" // Gradient for user messages
+                  : "linear-gradient(to right, #8e44ad, #3498db)", // Gradient for bot messages
                 color: "#fff",
                 borderRadius: "15px",
                 padding: "10px 15px",
