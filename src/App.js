@@ -30,7 +30,7 @@ const App = () => {
     setTimeout(() => {
       setMessages((prev) => [
         ...prev,
-        { sender: "bot", text: `You said: "${userInput}"`, avatar: "/bot-avatar.png" },
+        { sender: "bot", text: `You said: "${userInput}"`, avatar: "/user-avatar.png" },
       ]);
     }, 1000);
   };
