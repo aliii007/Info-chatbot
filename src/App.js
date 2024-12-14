@@ -12,7 +12,7 @@ import SendIcon from "@mui/icons-material/Send";
 
 const App = () => {
   const [messages, setMessages] = useState([
-    { sender: "bot", text: "Hi! How can I assist you today?", avatar: "/bot-avatar.png" },
+    { sender: "bot", text: "Hi! How can I assist you today?", avatar: "/user-avatar.png" },
   ]);
   const [userInput, setUserInput] = useState("");
 
